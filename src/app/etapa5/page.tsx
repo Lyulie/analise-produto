@@ -3,7 +3,7 @@
 import React, { Suspense, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/router';
 
 interface Item {
     id: string;
@@ -18,10 +18,8 @@ export default function Etapa5() {
 
     let items: Item[] = []
     
-    const searchParams = useSearchParams()
-    const id = searchParams.get('id')
-    const option4 = searchParams.get('o4')
-    const itemFamily = searchParams.get("itemFamily")
+    const router = useRouter();
+    const { id, o4: option4, itemFamily } = router.query;
 
     if(itemFamily == "G") {
         H_FAMILY.forEach((image) => items.push({

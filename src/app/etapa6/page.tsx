@@ -3,7 +3,7 @@
 import React, { Suspense, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/router';
 
 interface Item {
     id: string;
@@ -13,19 +13,17 @@ interface Item {
 
 export default function Etapa6() {
     
-    const searchParams = useSearchParams()
-    const id = searchParams.get('id')
-    const option4 = searchParams.get('o4')
-    const option5 = searchParams.get('o5')
+    const router = useRouter();
+    const { id, o4: option4, o5: option5 } = router.query;
 
     let items: Item[] = [
         {
-            id: option4!,
+            id: option4 as string,
             checked: false,
             src: `/img/${option4}.png`
         },
         {
-            id: option5!,
+            id: option5 as string,
             checked: false,
             src: `/img/${option5}.png`
         }

@@ -3,7 +3,7 @@
 import React, { Suspense, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/router';
 
 interface Item {
     id: string;
@@ -13,8 +13,8 @@ interface Item {
 
 export default function Etapa2() {
     
-    const searchParams = useSearchParams()
-    const id = searchParams.get('id')
+    const router = useRouter();
+    const { id } = router.query;
 
     const [itemsState, setItemsState] = useState<Item[]>([
         {
