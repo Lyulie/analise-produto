@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation'
@@ -52,6 +52,7 @@ export default function Etapa4() {
     const isChecked = () => itemsState.filter((item) => item.checked == true).length > 0
 
     return (
+        <Suspense>
         <main className="flex flex-col min-h-screen w-full items-center justify-center">
             <div className='flex gap-18 w-full justify-center gap-16'>
 
@@ -77,10 +78,11 @@ export default function Etapa4() {
             font-medium rounded-lg 
             text-sm px-5 py-2.5 
             text-center me-2 mb-2 mt-10'>
-                <Link href={isChecked() && `/etapa5?id=${id}&o4=${itemsState.find((item) => item.checked == true)?.id}&itemFamily=${itemFamily}` || ""}>
-                    Confirmar Etapa 4
-                </Link>
+                    <Link href={isChecked() && `/etapa5?id=${id}&o4=${itemsState.find((item) => item.checked == true)?.id}&itemFamily=${itemFamily}` || ""}>
+                        Confirmar Etapa 4
+                    </Link>
             </button>
         </main>
+        </Suspense>
     );
 }
