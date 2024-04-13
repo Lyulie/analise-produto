@@ -1,9 +1,7 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
-import { useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/router';
 
 interface Item {
     id: string;
@@ -11,16 +9,14 @@ interface Item {
     checked: boolean;
 }
 
+
 export default function Concluido() {
     
-    const searchParams = useSearchParams()
-    const id = searchParams.get('id')
-    const option4 = searchParams.get('o4')
-    const option5 = searchParams.get('o5')
-    const finalChoice = searchParams.get('fc')
+    const router = useRouter();
+    const { id, o4: option4, o5: option5, fc: finalChoice } = router.query;
 
     let item: Item = {
-        id: finalChoice!,
+        id: finalChoice as string,
         checked: false,
         src: `/img/${finalChoice}.png`
     }
