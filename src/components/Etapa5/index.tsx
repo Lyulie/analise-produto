@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom"
 import { Item, dicionarioItens } from "../../view/view-objects"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import "./styles.css"
 import { Seletor } from "../Seletor"
 
