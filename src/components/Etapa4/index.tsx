@@ -7,7 +7,7 @@ import "./styles.css"
 export default function Etapa4() {
     const location = useLocation()
     const navigate = useNavigate()
-
+    
     const ordemAtual: Item[] = dicionarioItens(location.state.id).map((item) => {
         return {
             id: item,
@@ -22,66 +22,65 @@ export default function Etapa4() {
     const [itemEscolhido, setItemEscolhido] = useState("")
     const [itens, setItens] = useState<Item[]>(ordemAtual)
 
-    const handleCheck = (checked_index: number) => {
-        const newItemEscolhido = itens[checked_index].id;
-        setItemEscolhido(newItemEscolhido);
-        setMantemEscolha(newItemEscolhido === location.state.id);
-        setEscolheOutra(newItemEscolhido !== location.state.id);
-        setItens(
-            itens.map((item, index) =>
-                index === checked_index
-                    ? { ...item, checked: true }
-                    : { ...item, checked: false }
-            )
-        );
-    }
+    useEffect(() => {
+
+        if(itemEscolhido == "") {
+            setEscolheOutra(false)
+            setMantemEscolha(false)
+        }else if(itemEscolhido == location.state.id) {
+            setEscolheOutra(false)
+            setMantemEscolha(true)
+        } else {
+            setEscolheOutra(true)
+            setMantemEscolha(false)
+        }
+
+    }, [itemEscolhido])
+
+    useEffect(() => {
+        const possivelEscolha = itens.find((item) => item.checked == true)
+        if(possivelEscolha) {
+            setItemEscolhido(possivelEscolha.id)
+            console.log(itemEscolhido)
+        }
+        
+    }, [itens])
+
+    const handleCheck = (checked_index: number) => setItens(
+        itens.map((item, index) =>
+            index == checked_index
+                ? { ...item, checked: true }
+                : { ...item, checked: false }
+        )
+    )
 
     const handleMantemEscolha = () => {
-        if (!mantemEscolha && !escolheOutra) {
-            setMantemEscolha(true)
-            setItens(itens.map((item) => item.id == location.state.id
-                ? { ...item, checked: true }
-                : { ...item, checked: false }));
-        } else if (mantemEscolha && !escolheOutra) {
-            setMantemEscolha(false)
-            setEscolheOutra(false)
-            setItens(itens.map((item) => ({ ...item, checked: false })));
-        } else if (!mantemEscolha && escolheOutra) {
-            setMantemEscolha(true)
-            setEscolheOutra(false)
-            setItens(itens.map((item) => item.id == location.state.id
-                ? { ...item, checked: true }
-                : { ...item, checked: false }));
-        }
+        setMantemEscolha(!mantemEscolha)
+        setEscolheOutra(mantemEscolha)
+        setItens(itens.map((item) => item.id == location.state.id 
+            ? {...item, checked: true} 
+            : {...item, checked: false}));
     }
 
     const handleEscolheOutra = () => {
-        if (escolheOutra && !mantemEscolha) {
-            setEscolheOutra(false)
-            setMantemEscolha(false)
-            setItens(itens.map((item) => ({ ...item, checked: false })));
-        } else if (!escolheOutra && mantemEscolha) {
-            setEscolheOutra(true)
-            setMantemEscolha(false)
-            setItens(itens.map((item) => ({ ...item, checked: false })));
-        } else if (!escolheOutra && !mantemEscolha) {
-            setEscolheOutra(true)
-            setItens(itens.map((item) => ({ ...item, checked: false })));
-        }
+        setEscolheOutra(!escolheOutra)
+        setMantemEscolha(escolheOutra)
+
+        setItens(itens.map((item) => ({...item, checked: false})));
     }
 
     return (
         <main>
             <h1>Em comparação as outras possibilidades, você:</h1>
             <div className="decisao">
-                <button
-                    className={mantemEscolha ? 'emfoco' : 'done'}
-                    onClick={handleMantemEscolha}>
+                <button 
+                    className={mantemEscolha? 'emfoco': 'done'}
+                    onClick={ handleMantemEscolha }>
                     Mantém sua escolha
                 </button>
-                <button
-                    className={escolheOutra ? 'emfoco' : 'done'}
-                    onClick={handleEscolheOutra}>
+                <button 
+                    className={escolheOutra? 'emfoco': 'done'}
+                    onClick={ handleEscolheOutra }>
                     Escolhe outra
                 </button>
             </div>
@@ -89,32 +88,32 @@ export default function Etapa4() {
             <div className="container_imagem">
                 {itens.map((item, index) => (
                     <div key={index} className="container_escolha">
-                        <input
-                            checked={item.checked}
-                            className="radio_button"
-                            type="radio"
+                        <input 
+                            checked={item.checked} 
+                            className="radio_button" 
+                            type="radio" 
                             onChange={() => handleCheck(index)} />
                         <img src={item.src} alt="" />
 
-                        {item.id == location.state.id ? (
+                        {item.id == location.state.id? (
                             <p>Sua Escolha</p>
-                        ) : <></>}
+                        ): <></> }
                     </div>
 
                 ))}
             </div>
-
+            
             <div className="buttonContainer">
-                <div className="back" onClick={() => { navigate('/etapa3', { replace: true, state: { id: location.state.id.substring(0, 2) } }) }}></div>
-                <button
-                    className="done"
-                    type="submit"
-                    onClick={() => { navigate('/etapa5', { replace: true, state: { id: location.state.id, o4: itemEscolhido } }) }}>
+                <div className="back" onClick={() => {navigate('/etapa3', { replace: true, state: {id:location.state.id.substring(0, 2)} })}}></div>
+                <button 
+                    className="done" 
+                    type="submit" 
+                    onClick={()=> {navigate('/etapa5', { replace: true, state: {id:location.state.id, o4:itemEscolhido} })}}>
                     Finalizar
                 </button>
             </div>
 
-
+            
         </main>
     )
 }
