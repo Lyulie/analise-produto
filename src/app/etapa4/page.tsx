@@ -52,7 +52,7 @@ export default function Etapa4() {
     const isChecked = () => itemsState.filter((item) => item.checked == true).length > 0
 
     return (
-        <Suspense>
+        <Suspense fallback={<div className='flex items-center justify-center'>Carregando</div>}>
         <main className="flex flex-col min-h-screen w-full items-center justify-center">
             <div className='flex gap-18 w-full justify-center gap-16'>
 
