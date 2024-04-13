@@ -11,15 +11,16 @@ export interface Param {
     finalChoice: string;
 }
 
-const ETAPA2_A = ["adg", "aeg"]
-const ETAPA2_B = ["bdg", "beg"]
+export const ETAPA1 = ["ace", "bce"]
+const ETAPA2_A = ["ace", "ade"]
+const ETAPA2_B = ["bce", "bde"]
 
-const ETAPA3_AD = ["adg", "adh"]
-const ETAPA3_AE = ["aeg", "aeh"]
-const ETAPA3_BD = ["bdg", "bdh"]
-const ETAPA3_BE = ["beg", "beh"]
+const ETAPA3_AC = ["ace", "acf"]
+const ETAPA3_AD = ["ade", "adf"]
+const ETAPA3_BC = ["bce", "bcf"]
+const ETAPA3_BD = ["bde", "bdf"]
 
-const TODOS_ITENS = ["adg", "aeg", "adh", "aeh", "bdg", "beg", "bdh", "beh"]
+const TODOS_ITENS = ["ace", "ade", "acf", "adf", "bce", "bde", "bcf", "bdf"]
 
 function tornarIndex0(item: string): string[] {
     let lista = [...TODOS_ITENS]
@@ -41,17 +42,17 @@ export function dicionarioItens(id: string): string[] {
         const ultimaLetra = id[id.length - 1]
 
         return {
-            "g": tornarIndex0(id),
-            "h": tornarIndex0(id)
+            "e": tornarIndex0(id),
+            "f": tornarIndex0(id)
         }[ultimaLetra] || []
     }
 
     return {
         "a": ETAPA2_A,
         "b": ETAPA2_B,
+        "ac": ETAPA3_AC,
         "ad": ETAPA3_AD,
-        "ae": ETAPA3_AE,
+        "bc": ETAPA3_BC,
         "bd": ETAPA3_BD,
-        "be": ETAPA3_BE,
     }[id] || []
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Item } from "../../view/view-objects"
+import { ETAPA1, Item } from "../../view/view-objects"
 import "./styles.css"
 import { useNavigate } from "react-router-dom"
 
@@ -7,19 +7,17 @@ export default function Etapa1() {
 
     const navigate = useNavigate()
 
+    const ordemInicial: Item[] = ETAPA1.map((item) => {
+        return {
+            id: item.substring(0, 1),
+            src: `/img/${item}.png`,
+            checked: false
+        }
+    })
+
+
     const [itemEscolhido, setItemEscolhido] = useState("")
-    const [itens, setItens] = useState<Item[]>([
-        {
-            id: "a",
-            src: "/img/adg.png",
-            checked: false
-        },
-        {
-            id: "b",
-            src: "/img/bdg.png",
-            checked: false
-        },
-    ])
+    const [itens, setItens] = useState<Item[]>(ordemInicial)
 
     useEffect(() => {
         const possivelEscolha = itens.find((item) => item.checked == true)
