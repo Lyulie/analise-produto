@@ -20,6 +20,11 @@ export default function Etapa4() {
     let itemFamily = ""
     
     const router = useRouter();
+
+    if (typeof window === 'undefined') {
+        return <div>Loading...</div>
+    }
+
     const { id } = router.query;
 
     if(H_FAMILY.includes(id as string)) {

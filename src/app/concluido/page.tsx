@@ -13,6 +13,11 @@ interface Item {
 export default function Concluido() {
     
     const router = useRouter();
+
+    if (typeof window === 'undefined') {
+        return <div>Loading...</div>
+    }
+
     const { id, o4: option4, o5: option5, fc: finalChoice } = router.query;
 
     let item: Item = {

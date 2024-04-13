@@ -19,6 +19,11 @@ export default function Etapa5() {
     let items: Item[] = []
     
     const router = useRouter();
+
+    if (typeof window === 'undefined') {
+        return <div>Loading...</div>
+    }
+
     const { id, o4: option4, itemFamily } = router.query;
 
     if(itemFamily == "G") {

@@ -14,6 +14,11 @@ interface Item {
 export default function Etapa2() {
     
     const router = useRouter();
+
+    if (typeof window === 'undefined') {
+        return <div>Loading...</div>
+    }
+
     const { id } = router.query;
 
     const [itemsState, setItemsState] = useState<Item[]>([
