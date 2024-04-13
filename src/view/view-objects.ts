@@ -19,8 +19,6 @@ const ETAPA3_AE = ["aeg", "aeh"]
 const ETAPA3_BD = ["bdg", "bdh"]
 const ETAPA3_BE = ["beg", "beh"]
 
-const FAMILIA_G = ["adg", "aeg", "bdg", "beg"]
-const FAMILIA_H = ["adh", "aeh", "bdh", "beh"]
 const TODOS_ITENS = ["adg", "aeg", "adh", "aeh", "bdg", "beg", "bdh", "beh"]
 
 export function dicionarioItens(id: string): string[] {
