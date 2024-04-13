@@ -53,36 +53,49 @@ export default function Etapa4() {
 
     return (
         <Suspense fallback={<div className='flex items-center justify-center'>Carregando</div>}>
-        <main className="flex flex-col min-h-screen w-full items-center justify-center">
-            <div className='flex gap-18 w-full justify-center gap-16'>
-
-                {itemsState.map((item, index) => (
-                    <div key={index} className='flex flex-col gap-4'>
-                        <input
-                            type="radio"
-                            checked={item.checked}
-                            defaultChecked={false}
-                            className="w-8 h-8"
-                            onChange={() => handleCheck(index)}
-                        />
-                        <Image className="h-[473px]" width="183" height="473" src={item.src} alt="" />
-                    </div>
-                ))}
-            </div>
-
-            <button className='
-            text-white bg-gradient-to-br 
-            from-pink-500 to-orange-400 
-            hover:bg-gradient-to-bl focus:ring-4 
-            focus:outline-none focus:ring-pink-200 
-            font-medium rounded-lg 
-            text-sm px-5 py-2.5 
-            text-center me-2 mb-2 mt-10'>
-                    <Link href={isChecked() && `/etapa5?id=${id}&o4=${itemsState.find((item) => item.checked == true)?.id}&itemFamily=${itemFamily}` || ""}>
+            <main className="flex flex-col min-h-screen w-full items-center justify-center">
+                <div className='flex gap-18 w-full justify-center gap-16'>
+    
+                    {itemsState.map((item, index) => (
+                        <div key={index} className='flex flex-col gap-4'>
+                            <input
+                                type="radio"
+                                checked={item.checked}
+                                defaultChecked={false}
+                                className="w-8 h-8"
+                                onChange={() => handleCheck(index)}
+                            />
+                            <Image className="h-[473px]" width="183" height="473" src={item.src} alt="" />
+                        </div>
+                    ))}
+                </div>
+    
+                {isChecked() ? (
+                    <Link 
+                        href={`/etapa5?id=${id}&o4=${itemsState.find((item) => item.checked == true)?.id}&itemFamily=${itemFamily}`}
+                        className='
+                        text-white bg-gradient-to-br 
+                        from-pink-500 to-orange-400 
+                        hover:bg-gradient-to-bl focus:ring-4 
+                        focus:outline-none focus:ring-pink-200 
+                        font-medium rounded-lg 
+                        text-sm px-5 py-2.5 
+                        text-center me-2 mb-2 mt-10'>
                         Confirmar Etapa 4
                     </Link>
-            </button>
-        </main>
+                ) : (
+                    <button disabled className='
+                    text-white bg-gradient-to-br 
+                    from-pink-500 to-orange-400 
+                    hover:bg-gradient-to-bl focus:ring-4 
+                    focus:outline-none focus:ring-pink-200 
+                    font-medium rounded-lg 
+                    text-sm px-5 py-2.5 
+                    text-center me-2 mb-2 mt-10'>
+                        Confirmar Etapa 4
+                    </button>
+                )}
+            </main>
         </Suspense>
     );
 }
