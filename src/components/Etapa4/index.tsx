@@ -108,7 +108,7 @@ return (
                 className="done"
                 type="submit"
                 onClick={() => { navigate('/etapa5', { replace: true, state: { id: location.state.id, o4: itemEscolhido } }) }}>
-                Finalizar
+                Avançar
             </button>
         </div>
 

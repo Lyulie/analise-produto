@@ -57,7 +57,7 @@ export default function Etapa2() {
                     className="done" 
                     type="submit" 
                     onClick={()=> {navigate('/etapa3', { replace: true, state: {id:itemEscolhido} })}}>
-                    Finalizar
+                    Avançar
                 </button>
             </div>
 
