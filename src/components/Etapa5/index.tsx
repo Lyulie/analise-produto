@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom"
 import { Item, dicionarioItens } from "../../view/view-objects"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import "./styles.css"
 import { Seletor } from "../Seletor"
 
@@ -19,6 +19,12 @@ export default function Etapa5() {
     })
 
     const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+    const [rankingPronto, setRankingPronto] = useState(false)
+
+    useEffect(() => {
+        const opcoesValidas = selectedOptions.filter((item) => item != "" && item != undefined).length
+        setRankingPronto(opcoesValidas == 7)
+    })
 
     const handleSelect = (index: number, value: string) => {
         let newSelectedOptions = [...selectedOptions];
@@ -62,6 +68,7 @@ export default function Etapa5() {
             <div className="buttonContainer">
                 <div className="back" onClick={() => { navigate('/etapa4', { replace: true, state: { id: location.state.id } }) }}></div>
                 <button
+                    disabled={!rankingPronto}
                     className="done"
                     type="submit"
                     onClick={() => { navigate('/final', { replace: true, state: { id: location.state.id, o4: location.state.o4, ranking: selectedOptions } }) }}>

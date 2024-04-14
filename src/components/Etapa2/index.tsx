@@ -53,7 +53,8 @@ export default function Etapa2() {
 
             <div className="buttonContainer">
                 <div className="back" onClick={() => {navigate('/etapa1')}}></div>
-                <button 
+                <button
+                    disabled={itemEscolhido == ""}
                     className="done" 
                     type="submit" 
                     onClick={()=> {navigate('/etapa3', { replace: true, state: {id:itemEscolhido} })}}>

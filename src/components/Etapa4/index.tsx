@@ -105,6 +105,7 @@ return (
         <div className="buttonContainer">
             <div className="back" onClick={() => { navigate('/etapa3', { replace: true, state: { id: location.state.id.substring(0, 2) } }) }}></div>
             <button
+                disabled={itemEscolhido == ""}
                 className="done"
                 type="submit"
                 onClick={() => { navigate('/etapa5', { replace: true, state: { id: location.state.id, o4: itemEscolhido } }) }}>

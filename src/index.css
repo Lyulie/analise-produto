@@ -43,4 +43,41 @@ input[type="radio"]:checked:after {
   left: 16%;
 }
 
+button.done {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 0px 20px 0px 20px;
+  height: 60px;
+  font-size: x-large;
+  font-weight: 700;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+button.done:disabled {
+  cursor: not-allowed;
+}
+
+button.emfoco {
+  background-color: #79DB8F;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 0px 20px 0px 20px;
+  height: 60px;
+  font-size: x-large;
+  font-weight: 700;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
 

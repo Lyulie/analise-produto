@@ -53,11 +53,12 @@ export default function Etapa3() {
 
             <div className="buttonContainer">
                 <div className="back" onClick={() => {navigate('/etapa2', { replace: true, state: {id:location.state.id.substring(0, 1)} })}}></div>
-                <button 
+                <button
+                    disabled={itemEscolhido == ""}
                     className="done" 
                     type="submit" 
                     onClick={()=> {navigate('/etapa4', { replace: true, state: {id:itemEscolhido} })}}>
-                    Finalizar
+                    Avançar
                 </button>
             </div>
 
