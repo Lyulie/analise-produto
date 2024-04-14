@@ -10,7 +10,7 @@ export default function Etapa5() {
     const location = useLocation()
     const navigate = useNavigate()
 
-    const ordemAtual: Item[] = dicionarioItens(location.state.id).map((item) => {
+    const ordemAtual: Item[] = dicionarioItens(location.state.o4).map((item) => {
         return {
             id: item,
             src: `/img/${item}.png`,
@@ -36,7 +36,7 @@ export default function Etapa5() {
             <div className="container_imagem">
                 {ordemAtual.map((item, index) => (
                     <div key={index} className="container_escolha">
-                        {item.id == location.state.id ? (
+                        {item.id == location.state.o4 ? (
                             <>
                                 <input
                                     checked
