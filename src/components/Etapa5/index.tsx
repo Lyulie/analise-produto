@@ -57,6 +57,8 @@ export default function Etapa5() {
                 ))}
             </div>
 
+            <div className="nivel">a</div>
+
             <div className="buttonContainer">
                 <div className="back" onClick={() => { navigate('/etapa4', { replace: true, state: { id: location.state.id } }) }}></div>
                 <button
