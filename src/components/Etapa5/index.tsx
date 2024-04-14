@@ -4,7 +4,7 @@ import { useState } from "react"
 import "./styles.css"
 import { Seletor } from "../Seletor"
 
-const OPCOES = ['1', '2', '3', '4', '5', '6', '7']
+const OPCOES = ['', '1', '2', '3', '4', '5', '6', '7']
 
 export default function Etapa5() {
     const location = useLocation()
@@ -22,6 +22,9 @@ export default function Etapa5() {
 
     const handleSelect = (index: number, value: string) => {
         let newSelectedOptions = [...selectedOptions];
+        if(!value && newSelectedOptions[index] && !OPCOES.includes(newSelectedOptions[index])) {
+            OPCOES.push(newSelectedOptions[index]);
+        }
         newSelectedOptions[index] = value;
         setSelectedOptions(newSelectedOptions);
     };
@@ -44,7 +47,7 @@ export default function Etapa5() {
                         ) : 
                             <>
                                 <Seletor 
-                                    options={OPCOES.filter(option => !selectedOptions.includes(option) || option === selectedOptions[index])} 
+                                    options={OPCOES.filter(option => option === '' || !selectedOptions.includes(option) || option === selectedOptions[index])} 
                                     onSelect={(value: string) => handleSelect(index, value)} 
                                 />
                                 <img src={item.src} alt="" />
@@ -59,7 +62,7 @@ export default function Etapa5() {
                 <button
                     className="done"
                     type="submit"
-                    onClick={() => { navigate('/etapa6', { replace: true, state: { id: location.state.id, o4: location.state.o4 } }) }}>
+                    onClick={() => { navigate('/final', { replace: true, state: { id: location.state.id, o4: location.state.o4, ranking: selectedOptions } }) }}>
                     Avançar
                 </button>
             </div>

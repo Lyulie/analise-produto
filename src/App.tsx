@@ -6,6 +6,7 @@ import Etapa3 from './components/Etapa3';
 import Etapa4 from './components/Etapa4';
 import Home from './components/Home';
 import Etapa5 from './components/Etapa5';
+import Final from './components/Final';
 
 
 
@@ -21,6 +22,7 @@ function App() {
             <Route path='/etapa3' element={<Etapa3 />} />
             <Route path='/etapa4' element={<Etapa4 />} />
             <Route path='/etapa5' element={<Etapa5 />} />
+            <Route path='/final' element={<Final />} />
           </Routes>
         </BrowserRouter>
       </>
